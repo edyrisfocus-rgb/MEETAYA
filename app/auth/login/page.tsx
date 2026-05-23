@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Calendar, Shield, Sparkles, User, Mail, ArrowRight } from 'lucide-react';
+import { Calendar, Shield, Sparkles, User, Mail, ArrowRight, Google } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -77,6 +77,19 @@ export default function LoginPage() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Google Login */}
+          <div className="space-y-3">
+            <button
+              type="button"
+              onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+              className="w-full inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 hover:bg-white/10 transition-all"
+            >
+              <Google className="w-4 h-4 text-white" />
+              Continue with Google
+            </button>
+            <div className="text-center text-[10px] text-slate-500">or use developer persona below</div>
+          </div>
+
           {/* Persona Selection */}
           <div>
             <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
