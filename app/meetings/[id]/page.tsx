@@ -138,9 +138,11 @@ export default function MeetingDetailsPage({ params }: { params: Promise<{ id: s
   }, [status, id]);
 
   // Handle Minutes update (add Note or Decision)
-  const handleAddNote = () => {
-    if (!newNote) return;
-    setMinutes({ ...minutes, notes: [...minutes.notes, newNote] });
+  const handleAddNote = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
+    const trimmedNote = newNote.trim();
+    if (!trimmedNote) return;
+    setMinutes({ ...minutes, notes: [...minutes.notes, trimmedNote] });
     setNewNote('');
   };
 
@@ -150,9 +152,11 @@ export default function MeetingDetailsPage({ params }: { params: Promise<{ id: s
     setMinutes({ ...minutes, notes: updated });
   };
 
-  const handleAddDecision = () => {
-    if (!newDecision) return;
-    setMinutes({ ...minutes, decisions: [...minutes.decisions, newDecision] });
+  const handleAddDecision = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
+    const trimmedDecision = newDecision.trim();
+    if (!trimmedDecision) return;
+    setMinutes({ ...minutes, decisions: [...minutes.decisions, trimmedDecision] });
     setNewDecision('');
   };
 
@@ -504,6 +508,7 @@ export default function MeetingDetailsPage({ params }: { params: Promise<{ id: s
                     onKeyDown={(e) => e.key === 'Enter' && handleAddNote()}
                   />
                   <button 
+                    type="button"
                     onClick={handleAddNote}
                     className="btn-premium p-2 rounded-xl shrink-0"
                   >
@@ -543,6 +548,7 @@ export default function MeetingDetailsPage({ params }: { params: Promise<{ id: s
                     onKeyDown={(e) => e.key === 'Enter' && handleAddDecision()}
                   />
                   <button 
+                    type="button"
                     onClick={handleAddDecision}
                     className="btn-premium p-2 rounded-xl shrink-0"
                   >

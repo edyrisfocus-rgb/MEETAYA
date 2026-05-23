@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Calendar, Shield, Sparkles, User, Mail, ArrowRight, Google } from 'lucide-react';
+import { Calendar, Shield, Sparkles, User, Mail, ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -84,7 +84,12 @@ export default function LoginPage() {
               onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
               className="w-full inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 hover:bg-white/10 transition-all"
             >
-              <Google className="w-4 h-4 text-white" />
+              <span className="w-4 h-4 inline-block">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+                  <path d="M12 11.5v2.9h6.3c-.3 1.9-2 5.6-6.3 5.6-3.8 0-7-3.1-7-7s3.2-7 7-7c2.2 0 3.7.9 4.6 1.7l1.6-1.6C16.4 4.2 14.4 3.2 12 3.2 6.8 3.2 2.8 7.2 2.8 12.4s4 9.2 9.2 9.2c5.3 0 8.9-3.7 8.9-8.9 0-.6-.1-1.1-.2-1.6H12z" fill="#4285F4" />
+                  <path d="M4.9 7.1l2.7 2.1C8 7.6 9.8 6.5 12 6.5c1.6 0 3 .6 4 1.6l2.3-2.3C17 3.9 14.7 3 12 3 9 3 6.5 4 4.9 7.1z" fill="#34A853" opacity="0.001" />
+                </svg>
+              </span>
               Continue with Google
             </button>
             <div className="text-center text-[10px] text-slate-500">or use developer persona below</div>

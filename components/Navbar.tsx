@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
 import { Calendar, LogOut, Menu, X, Bell, CheckCircle2 } from 'lucide-react';
 
 export default function Navbar() {
+  const router = useRouter();
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -217,9 +219,13 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <Link href="/auth/login" className="btn-premium py-1.5 px-4 text-sm">
+              <button
+                type="button"
+                onClick={() => router.push('/auth/login')}
+                className="btn-premium py-1.5 px-4 text-sm"
+              >
                 Get Started
-              </Link>
+              </button>
             )}
           </div>
 
@@ -327,13 +333,16 @@ export default function Navbar() {
               </>
             ) : (
               <div className="px-3 py-2">
-                <Link
-                  href="/auth/login"
-                  onClick={() => setIsOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    router.push('/auth/login');
+                    setIsOpen(false);
+                  }}
                   className="w-full text-center block btn-premium py-2"
                 >
                   Get Started
-                </Link>
+                </button>
               </div>
             )}
           </div>
